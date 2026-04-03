@@ -1,0 +1,42 @@
+name: Test and Build Service 1
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+    paths:
+     - service1/**
+permissions:
+  pull-requests: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Maven Test
+        id: maven-test
+        run: |
+          mvn -f ./service1/pom.xml test
+          mvn -f ./service1/pom.xml install
+      - name: Docker Build and Push
+        if: always() && steps.maven-test.outcome == 'success'
+        run: | 
+          docker build -t service1:latest ./service1
+          docker tag service1:latest todain.azurecr.io/service1:${GITHUB_SHA}
+          docker tag service1:latest todain.azurecr.io/service1:latest
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az acr login --name todain
+          #docker push todain.azurecr.io/service1:${GITHUB_SHA}
+          az logout
+        
