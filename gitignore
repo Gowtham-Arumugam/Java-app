@@ -1,1 +1,33 @@
-.vscode
+.vscode/
+# Spring Boot
+target/
+.classpath
+.project
+.settings/
+*.jar
+*.war
+*.ear
+
+# IDE
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven
+.m2/
+pom.xml.tag
+pom.xml.asc
+
+# Gradle
+.gradle/
+build/
+
+# Environment
+.env
+application-local.properties
