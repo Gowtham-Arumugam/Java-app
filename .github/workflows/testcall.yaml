@@ -12,5 +12,4 @@ jobs:
         id: java_build
         uses: NullPointerWorks/trivy-image-scan-action@main
         with:
-          java-version: "17"
-          build-command: "mvn -B clean verify"
+          image-name: java-app:latest
