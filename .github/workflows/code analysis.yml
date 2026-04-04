@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - feature/*
-      - bugfix/*
       - master
 jobs:
   code-analysis:
