@@ -1,0 +1,14 @@
+name: CI Pipeline
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run shared Maven build
+        uses: Gowtham-Arumugam/utilities/.github/workflows/action.yaml@main
+        with:
+          java-version: "17"
+          maven-args: "clean package"
