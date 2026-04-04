@@ -13,10 +13,7 @@ jobs:
 
       - name: Run reusable composite action
         id: java_build
-        uses: Gowtham-Arumugam/utilities/.github/workflows/action.yaml@main
+        uses: Gowtham-Arumugam/utilities/.github/workflows/action.yml@main
         with:
           java-version: "17"
           build-command: "mvn -B clean verify"
-
-      - name: Print output
-        run: echo "${{ steps.java_build.outputs.build-status }}"
