@@ -1,5 +1,10 @@
-name: SonarQube
-on: [push, workflow_dispatch]
+name: SonarQube & trivy code analysis
+on: 
+  push:
+    branches:
+      - feature/*
+      - bugfix/*
+      - master
 jobs:
   code-analysis:
     name: Code analyze
@@ -11,7 +16,7 @@ jobs:
         with:
           java-version: 21
           distribution: 'zulu' 
-      - run: cd app && mvn compile package
+      - run: cd app && mvn test compile package
       - name: Build and analyze
         uses: sonarSource/sonarqube-scan-action@v7.0.0
         env:

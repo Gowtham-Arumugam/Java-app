@@ -20,5 +20,9 @@ public class Service1 {
     public String printColor() {
         logger.info("color method called");
         return System.getenv("COLOR");
+    }@GetMapping("/")
+    public String homePage() {
+        logger.info("sayHello method called");
+        return "Hello, World!"; 
     }
 }
