@@ -29,8 +29,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
-      - name: Trivy Scan
-        uses: Gowtham-Arumugam/utilities/.github/workflows/scan-docker-image.yaml@v1
-        with:
-          docker_image: java-app:latest
+  scan-docker-image:
+    uses: Gowtham-Arumugam/utilities/.github/workflows/scan-docker-image.yaml@main
+    with:
+      docker_image: java-app:latest
         
