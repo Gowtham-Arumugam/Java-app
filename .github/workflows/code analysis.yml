@@ -29,6 +29,7 @@ jobs:
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
   scan-docker-image:
+    needs: code-analysis
     uses: Gowtham-Arumugam/utilities/.github/workflows/scan-docker-image.yaml@main
     with:
       docker_image: java-app:latest
