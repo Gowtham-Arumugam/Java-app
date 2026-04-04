@@ -32,5 +32,5 @@ jobs:
       - name: Trivy Scan
         uses: Gowtham-Arumugam/utilities/.github/workflows/scan-docker-image.yaml@v1
         with:
-          image: java-app:latest
+          docker_image: java-app:latest
         
