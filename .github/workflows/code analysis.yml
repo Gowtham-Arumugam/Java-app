@@ -22,7 +22,7 @@ jobs:
           restore-keys: |
             maven-${{ runner.os }}-
       - run: cd app && mvn test compile package
-      - name: Build and analyze
+      - name: static code analyze
         uses: sonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
