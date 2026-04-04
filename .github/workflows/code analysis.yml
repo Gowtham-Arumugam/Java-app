@@ -28,9 +28,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
-  scan-docker-image:
-    needs: code-analysis
-    uses: NullPointerWorks/trivy-image-scan-action@main
-    with:
-      image-name: java-app:latest
+      - name: Run reusable composite action
+        uses: NullPointerWorks/trivy-image-scan-action@main
+        with:
+          image-name: java-app:latest
         
