@@ -1,14 +1,22 @@
-name: CI Pipeline
+# .github/workflows/ci.yml
+name: Java CI
 
-on: push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Run shared Maven build
+
+      - name: Run reusable composite action
+        id: java_build
         uses: Gowtham-Arumugam/utilities/.github/workflows/action.yaml@main
         with:
           java-version: "17"
-          maven-args: "clean package"
+          build-command: "mvn -B clean verify"
+
+      - name: Print output
+        run: echo "${{ steps.java_build.outputs.build-status }}"
