@@ -19,9 +19,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
+          key: maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
           restore-keys: |
-            maven-${{ runner.os }}-
+            maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
       - run: cd app && mvn test compile package
       - name: sonarqube static code analyze
         uses: sonarSource/sonarqube-scan-action@v7.0.0
