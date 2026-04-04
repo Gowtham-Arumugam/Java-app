@@ -23,14 +23,14 @@ jobs:
           restore-keys: |
             maven-${{ runner.os }}-
       - run: cd app && mvn test compile package
-      - name: static code analyze
+      - name: sonarqube static code analyze
         uses: sonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
-      - name: Run reusable composite action
-        uses: NullPointerWorks/trivy-image-scan-action@main
+      - name: docker image scan with trivy
+        uses: NullPointerWorks/trivy-image-scan-action@v1
         with:
           image-name: java-app:latest
         
