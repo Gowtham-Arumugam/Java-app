@@ -10,7 +10,7 @@ jobs:
 
       - name: Run reusable composite action
         id: java_build
-        uses: NullPointerWorks/trivy-image-scan-action/.github/actions/action.yaml@main
+        uses: NullPointerWorks/trivy-image-scan-action@main
         with:
           java-version: "17"
           build-command: "mvn -B clean verify"
