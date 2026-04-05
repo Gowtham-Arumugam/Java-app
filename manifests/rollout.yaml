@@ -1,24 +1,11 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: api-rollout
+  name: springboot-app
   namespace: java-app
 spec:
   replicas: 5
   revisionHistoryLimit: 2
-  strategy:
-    canary:
-      stableService: api-service
-      canaryService: api-service-canary
-      steps:
-        - setWeight: 20 
-        - pause: {}
-        - setWeight: 40
-        - pause: {}
-        - setWeight: 60
-        - pause: {}
-        - setWeight: 80
-        - pause: {}
   selector:
     matchLabels:
       microservice: api
@@ -30,25 +17,24 @@ spec:
         app: java-app
     spec:
       containers:
-        - name: api-container
+        - name: springboot-app
           image: gowthamarumugam/java-app:latest
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-          env:
-            - name: COLOR
-              value: "blue"
-            - name: VERSION
-              value: "5.0.0"
-          readinessProbe:
-            httpGet:
-              path: /color
-              port: 8080
-          livenessProbe:
-            httpGet:
-              path: /color
-              port: 8080
-          startupProbe:
-            httpGet:
-              path: /color
-              port: 8080
+  strategy:
+    canary:
+      stableService: api-service
+      canaryService: api-service-canary
+      maxSurge: 25%
+      maxUnavailable: 0
+      steps:
+        - setWeight: 20
+        - pause:
+            duration: 1m
+        - setWeight: 40
+        - pause:
+            duration: 2m
+        - setWeight: 60
+        - pause:
+            duration: 2m
+        - setWeight: 100
