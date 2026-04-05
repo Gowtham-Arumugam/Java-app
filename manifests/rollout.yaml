@@ -1,10 +1,24 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
-  name: api-deployment
+  name: api-rollout
   namespace: java-app
 spec:
   replicas: 5
+  revisionHistoryLimit: 2
+  strategy:
+    canary:
+      stableService: api-service
+      canaryService: api-service-canary
+      steps:
+        - setWeight: 20 
+        - pause: {}
+        - setWeight: 40
+        - pause: {}
+        - setWeight: 60
+        - pause: {}
+        - setWeight: 80
+        - pause: {}
   selector:
     matchLabels:
       microservice: api
