@@ -30,8 +30,10 @@ spec:
             httpGet: /health
           startupProbe:
             httpGet: /health
+            initialDelaySeconds: 5
           livenessProbe:
             httpGet: /health
+            initialDelaySeconds: 5
   strategy:
     canary:
       steps:
