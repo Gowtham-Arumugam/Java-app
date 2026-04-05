@@ -26,12 +26,14 @@ spec:
               value: "v2"
             - name: COLOR
               value: "blue"
+          readinessProbe:
+            httpGet: /health
+          startupProbe:
+            httpGet: /health
+          livenessProbe:
+            httpGet: /health
   strategy:
     canary:
-      stableService: api-service
-      canaryService: api-service-canary
-      maxSurge: 25%
-      maxUnavailable: 0
       steps:
         - setWeight: 20
         - pause: {}
