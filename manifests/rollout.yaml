@@ -23,7 +23,7 @@ spec:
             - containerPort: 8080
           env:
             - name: VERSION
-              value: "v2000000000"
+              value: "---------------------------------"
             - name: COLOR
               value: "blue"
           readinessProbe:
