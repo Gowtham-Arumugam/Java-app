@@ -21,6 +21,11 @@ spec:
           image: gowthamarumugam/java-app:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: VERSION
+              value: "v1"
+            - name: COLOR
+              value: "blue"
   strategy:
     canary:
       stableService: api-service
