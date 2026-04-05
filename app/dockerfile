@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/java21-debian12
+FROM gcr.io/distroless/java21-debian13
 #FROM eclipse-temurin:21-jre-alpine
 COPY ./target/service1-0.0.1-SNAPSHOT.jar demo.jar
 EXPOSE 8080
