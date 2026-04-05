@@ -25,7 +25,7 @@ spec:
             - name: COLOR
               value: "blue"
             - name: VERSION
-              value: "2.0.0"
+              value: "3.0.0"
           readinessProbe:
             httpGet:
               path: /color
