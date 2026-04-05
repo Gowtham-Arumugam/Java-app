@@ -28,6 +28,6 @@ public class Service1 {
     @GetMapping("/health")
     public String healthCheck() {
         logger.info("healthCheck method called");
-        return "Service is healthy";    
+        return "Doing good!";    
     }
 }
