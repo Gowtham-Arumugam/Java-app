@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - master
-    paths:
-      - 'app/**'
   workflow_dispatch:
 jobs:
   code-analysis:
@@ -31,7 +29,7 @@ jobs:
         uses: sonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
       - name: docker image scan with trivy
