@@ -27,12 +27,12 @@ spec:
             - name: COLOR
               value: "blue"
           readinessProbe:
-            httpGet: /health
+            httpGet: "/health"
           startupProbe:
-            httpGet: /health
+            httpGet: "/health"
             initialDelaySeconds: 5
           livenessProbe:
-            httpGet: /health
+            httpGet: "/health"
             initialDelaySeconds: 5
   strategy:
     canary:
