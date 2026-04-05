@@ -1,0 +1,27 @@
+apiversion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      microservice: api
+      app: java-app
+  template:
+    metadata:
+      labels:
+        microservice: api
+        app: java-app
+    spec:
+      containers:
+        - name: api-container
+          image: gowthamarumugam/java-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: COLOR
+              value: "blue"
+            - name: VERSION
+              value: "1.0.0"
+            
