@@ -18,6 +18,7 @@ spec:
       containers:
         - name: api-container
           image: gowthamarumugam/java-app:latest
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
           env:
