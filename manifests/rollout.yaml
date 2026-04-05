@@ -30,6 +30,7 @@ spec:
             httpGet:
               port: 8080
               path: /health
+            initialDelaySeconds: 5
           startupProbe:
             httpGet: 
               port: 8080
