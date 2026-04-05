@@ -11,6 +11,7 @@ jobs:
     name: Build and push docker image
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - run: cd app && mvn test compile package
       - uses: actions/checkout@v4
       - name: Build Docker Image
