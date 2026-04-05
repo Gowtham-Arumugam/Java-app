@@ -25,4 +25,9 @@ public class Service1 {
         logger.info("sayHello method called");
         return "Hello, World!"; 
     }
+    @GetMapping("/health")
+    public String healthCheck() {
+        logger.info("healthCheck method called");
+        return "Service is healthy";    
+    }
 }
