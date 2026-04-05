@@ -27,12 +27,18 @@ spec:
             - name: COLOR
               value: "blue"
           readinessProbe:
-            httpGet: "/health"
+            httpGet:
+              port: 8080
+              path: /health
           startupProbe:
-            httpGet: "/health"
+            httpGet: 
+              port: 8080
+              path: /health
             initialDelaySeconds: 5
           livenessProbe:
-            httpGet: "/health"
+            httpGet:
+              port: 8080
+              path: /health
             initialDelaySeconds: 5
   strategy:
     canary:
