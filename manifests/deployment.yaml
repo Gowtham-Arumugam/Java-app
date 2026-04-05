@@ -25,4 +25,16 @@ spec:
               value: "blue"
             - name: VERSION
               value: "2.0.0"
-            
+          healthProbe:
+            readinessProbe:
+              httpGet:
+                path: /color
+                port: 8080
+            livenessProbe:
+              httpGet:
+                path: /color
+                port: 8080
+            startupProbe:
+              httpGet:
+                path: /color
+                port: 8080
