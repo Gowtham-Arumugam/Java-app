@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'app/**'
+      
+      
   workflow_dispatch:
 jobs:
   code-analysis:
