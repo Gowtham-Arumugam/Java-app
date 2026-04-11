@@ -17,15 +17,8 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 21
-          distribution: 'zulu' 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
-          restore-keys: |
-            maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
-    
+          distribution: 'temurin'
+          cache: maven
       - run: cd app && mvn compile package
      # - run: cd app &&mvn clean test jacoco:report sonar:sonar
       - name: sonarqube static code analyze
