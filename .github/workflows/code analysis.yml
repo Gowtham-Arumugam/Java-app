@@ -5,6 +5,7 @@ on:
       - master
     paths:
       - 'app/**'
+      - '.github/workflows/code analysis.yml'      
   workflow_dispatch:
 jobs:
   code-analysis:
@@ -16,19 +17,15 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: 21
-          distribution: 'zulu' 
-      - name: Cache Maven dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
-          restore-keys: |
-            maven-${{ runner.os }}-${{ hashFiles('app/pom.xml') }}
-      - run: cd app && mvn test compile package
+          distribution: 'temurin'
+          cache: maven
+      - run: cd app && mvn compile package
+     # - run: cd app &&mvn clean test jacoco:report sonar:sonar
       - name: sonarqube static code analyze
         uses: sonarSource/sonarqube-scan-action@v7.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Build Docker Image
         run: docker build -t java-app:latest app/
       - name: docker image scan with trivy
