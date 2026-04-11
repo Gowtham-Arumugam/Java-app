@@ -26,21 +26,21 @@ spec:
               value: "v7.0.0"
             - name: COLOR
               value: "blue"
-          readinessProbe:
-            httpGet:
-              port: 8080
-              path: /health
-            initialDelaySeconds: 5
-          startupProbe:
-            httpGet: 
-              port: 8080
-              path: /health
-            initialDelaySeconds: 5
-          livenessProbe:
-            httpGet:
-              port: 8080
-              path: /health
-            initialDelaySeconds: 5
+          # readinessProbe:
+          #   httpGet:
+          #     port: 8080
+          #     path: /health
+          #   initialDelaySeconds: 5
+          # startupProbe:
+          #   httpGet: 
+          #     port: 8080
+          #     path: /health
+          #   initialDelaySeconds: 5
+          # livenessProbe:
+          #   httpGet:
+          #     port: 8080
+          #     path: /health
+          #   initialDelaySeconds: 5
   strategy:
     blueGreen:
       activeService: api-service
