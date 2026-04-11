@@ -45,3 +45,4 @@ spec:
     blueGreen:
       activeService: api-service
       previewService: api-service-green
+      autoPromotionEnabled: false
