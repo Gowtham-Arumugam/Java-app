@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "main" {
+resource "azurerm_resource_group" "3tier-rg" {
     name     = "3tier-rg"
     location = "East US"
     tags = {
