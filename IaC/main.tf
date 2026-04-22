@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "three-tier-app-rg" {
-    name     = "ThreeTierAppRG"
+    name     = "ThreeTierApp_RG"
     location = "East US"
     tags = {
         environment = "production"
