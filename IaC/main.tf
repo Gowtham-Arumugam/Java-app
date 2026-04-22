@@ -1,4 +1,8 @@
 resource "azurerm_resource_group" "main" {
-    name     = "rg-main"
+    name     = "3tier-rg"
     location = "East US"
+    tags = {
+        environment = "production"
+        team        = "Null pointer works"
+    }
 }
