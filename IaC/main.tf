@@ -22,10 +22,10 @@ resource "azurerm_kubernetes_cluster" "three-tier-app-aks" {
     type = "SystemAssigned"
   }
 
-  network_profile {
-    network_plugin    = "kubenet"
-    load_balancer_sku = "basic"
-  }
+network_profile {
+  network_plugin    = "kubenet"
+  load_balancer_sku = "standard"   # REQUIRED
+}
 
   tags = {
     Environment = "Production"
