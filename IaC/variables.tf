@@ -14,3 +14,7 @@ variable "CLIENT_ID" {
   description = "The client ID for authentication."
   type        = string
 }
+variable "AKS_CLUSTER_NAME" {
+  description = "The name of the AKS cluster."
+  type        = string
+}

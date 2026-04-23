@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "three-tier-app-rg" {
     }
 }
 resource "azurerm_kubernetes_cluster" "example" {
-  name                = "example-aks1"
+  name                = var.AKS_CLUSTER_NAME
   location            = azurerm_resource_group.three-tier-app-rg.location
   resource_group_name = azurerm_resource_group.three-tier-app-rg.name
   dns_prefix          = "threetierappaks"
@@ -25,15 +25,4 @@ resource "azurerm_kubernetes_cluster" "example" {
   tags = {
     Environment = "Production"
   }
-}
-
-output "client_certificate" {
-  value     = azurerm_kubernetes_cluster.example.kube_config[0].client_certificate
-  sensitive = true
-}
-
-output "kube_config" {
-  value = azurerm_kubernetes_cluster.example.kube_config_raw
-
-  sensitive = true
 }
