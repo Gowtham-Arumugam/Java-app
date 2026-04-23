@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "three-tier-app-rg" {
         team        = "Null pointer works"
     }
 }
-resource "azurerm_kubernetes_cluster" "example" {
+resource "azurerm_kubernetes_cluster" "three-tier-app-aks" {
   name                = var.AKS_CLUSTER_NAME
   location            = azurerm_resource_group.three-tier-app-rg.location
   resource_group_name = azurerm_resource_group.three-tier-app-rg.name
