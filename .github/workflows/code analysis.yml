@@ -9,6 +9,7 @@ on:
   workflow_dispatch:
 jobs:
   code-analysis:
+    environment: All
     name: Code analyze
     runs-on: ubuntu-latest
     steps:

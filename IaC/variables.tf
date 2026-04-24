@@ -1,4 +1,4 @@
-variable "SECRET" {
+variable "CLIENT_SECRET" {
   description = "The client secret for authentication."
   type        = string
 }
@@ -6,7 +6,7 @@ variable "TENANT_ID" {
   description = "The tenant ID for authentication."
   type        = string
 }
-variable "Subscription_ID" {
+variable "SUBSCRIPTION_ID" {
   description = "The subscription ID for authentication."
   type        = string
 }
@@ -16,5 +16,9 @@ variable "CLIENT_ID" {
 }
 variable "AKS_CLUSTER_NAME" {
   description = "The name of the AKS cluster."
+  type        = string
+}
+variable "RESOURCE_GROUP_NAME" {
+  description = "The name of the resource group."
   type        = string
 }

@@ -4,12 +4,15 @@ metadata:
   name: gowtham-ingress
   namespace: java-app
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"   # Force HTTPS
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"   # force HTTPS
 spec:
+  ingressClassName: nginx
+
   tls:
   - hosts:
     - api.gowtham.living
-    secretName: gowtham-tls
+    secretName: gowtham-tls   # 👈 your TLS secret
 
   rules:
   - host: api.gowtham.living
