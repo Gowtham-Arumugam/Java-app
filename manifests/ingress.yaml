@@ -13,7 +13,6 @@ spec:
   - hosts:
     - api.gowtham.living
     secretName: gowtham-tls   # 👈 your TLS secret
-
   rules:
   - host: api.gowtham.living
     http:

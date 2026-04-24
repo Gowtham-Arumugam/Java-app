@@ -18,6 +18,7 @@ variable "AKS_CLUSTER_NAME" {
   description = "The name of the AKS cluster."
   type        = string
 }
+
 variable "RESOURCE_GROUP_NAME" {
   description = "The name of the resource group."
   type        = string
