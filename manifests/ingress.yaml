@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gowtham-ingress
+  namespace: java-app
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"   # force HTTPS
+spec:
+  ingressClassName: nginx
+
+  tls:
+  - hosts:
+    - api.gowtham.living
+    secretName: gowtham-tls   # 👈 your TLS secret
+  rules:
+  - host: api.gowtham.living
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: api-service
+            port:
+              number: 80

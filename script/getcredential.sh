@@ -1,0 +1,1 @@
+az aks get-credentials --resource-group ThreeTierApp-RG --name three-tier-app-aks-cluster
