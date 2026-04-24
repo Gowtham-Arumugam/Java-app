@@ -1,11 +1,11 @@
 name: apply k8s manifests
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
     paths:
       - '.github/workflows/*.yaml'
-  workflow_dispatch:
 jobs:
   apply-manifests:
     environment: production 
