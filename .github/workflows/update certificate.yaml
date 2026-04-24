@@ -1,0 +1,16 @@
+name: update ssl certificate in kubernetes
+on:
+    workflow_dispatch:
+    workflow_call:
+jobs:
+  update-certificate:
+    environment: production
+    name: Update SSL Certificate in Kubernetes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up kubectl
+        uses: NullPointerWorks/setup-kubectl@main
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
