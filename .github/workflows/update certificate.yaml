@@ -14,9 +14,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Set up kubectl
-        uses: NullPointerWorks/setup-kubectl@main
-        with:
-          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
-          cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+      # - name: Set up kubectl
+      #   uses: NullPointerWorks/setup-kubectl@main
+      #   with:
+      #     azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      #     resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
+      #     cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+      - name: minikube start
+        run: | 
+          minikube start --driver=docker
+          kubectl apply -f ./manifests/namespace.yaml
