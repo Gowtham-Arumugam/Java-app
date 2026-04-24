@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 jobs:
   update-certificate:
-    environment: production
+    # environment: production
     name: Update SSL Certificate in Kubernetes
     runs-on: ubuntu-latest
     steps:
