@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "three-tier-app-rg" {
+resource "azurerm_resource_group" "java-app-rg" {
     name     = var.RESOURCE_GROUP_NAME
     location = "East US"
     tags = {
@@ -6,11 +6,11 @@ resource "azurerm_resource_group" "three-tier-app-rg" {
         team        = "Null pointer works"
     }
 }
-resource "azurerm_kubernetes_cluster" "three-tier-app-aks" {
+resource "azurerm_kubernetes_cluster" "java-app-aks" {
   name                = var.AKS_CLUSTER_NAME
-  location            = azurerm_resource_group.three-tier-app-rg.location
-  resource_group_name = azurerm_resource_group.three-tier-app-rg.name
-  dns_prefix          = "threetierappaks"
+  location            = azurerm_resource_group.java-app-rg.location
+  resource_group_name = azurerm_resource_group.java-app-rg.name
+  dns_prefix          = "javaappaks"
 
   default_node_pool {
     name       = "default"
