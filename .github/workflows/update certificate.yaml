@@ -1,5 +1,11 @@
 name: update ssl certificate in kubernetes
-on: [workflow_dispatch]
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/update certificate.yml'
+  workflow_dispatch:
 jobs:
   update-certificate:
     environment: production
