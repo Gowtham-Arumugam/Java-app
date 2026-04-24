@@ -14,18 +14,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      # - name: Set up kubectl
-      #   uses: NullPointerWorks/setup-kubectl@main
-      #   with:
-      #     azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
-      #     resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
-      #     cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
-      - name: minikube start
+      - name: Set up kubectl
+        uses: NullPointerWorks/setup-kubectl@main
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
+          cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+      - name: create tls secret in kubernetes
         env:
           tls_key: ${{ secrets.TLS_KEY }}
           tls_crt: ${{ secrets.TLS_CRT }}
-        run: | 
-          minikube start --driver=docker
+        run: |
           kubectl apply -f ./manifests/namespace.yaml
           kubectl get namespaces
           echo "$tls_key" > tls.key
