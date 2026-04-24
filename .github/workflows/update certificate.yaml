@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '.github/workflows/update certificate.yaml'
   workflow_dispatch:
 jobs:
   update-certificate:
@@ -16,5 +18,5 @@ jobs:
         uses: NullPointerWorks/setup-kubectl@main
         with:
           azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{ vars.AZURE_RESOURCE_GROUP }}
-          cluster-name: ${{ vars.AZURE_CLUSTER_NAME }}
+          resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
+          cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
