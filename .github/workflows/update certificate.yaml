@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - '.github/workflows/update certificate.yml'
+      - '.github/workflows/update certificate.yaml'
   workflow_dispatch:
 jobs:
   update-certificate:
@@ -14,7 +14,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      # - name: Set up kubectl
-      #   uses: NullPointerWorks/setup-kubectl@main
-      #   with:
-      #     azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Set up kubectl
+        uses: NullPointerWorks/setup-kubectl@main
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
+          cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+      - name: create tls secret in kubernetes
+        env:
+          tls_key: ${{ secrets.TLS_KEY }}
+          tls_crt: ${{ secrets.TLS_CRT }}
+        run: |
+          kubectl apply -f ./manifests/namespace.yaml
+          kubectl get namespaces
+          echo "$tls_key" > tls.key
+          echo "$tls_crt" > tls.crt
+          kubectl create secret tls gowtham-tls --key tls.key   --cert tls.crt -n java-app
+          kubectl get secrets/gowtham-tls -n java-app

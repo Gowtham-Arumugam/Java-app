@@ -1,0 +1,25 @@
+name: apply k8s manifests
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - '.github/workflows/*.yaml'
+jobs:
+  apply-manifests:
+    environment: production 
+    name: Apply Kubernetes Manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up kubectl
+        uses: NullPointerWorks/setup-kubectl@main
+        with:
+          azure-credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          resource-group: ${{ vars.RESOURCE_GROUP_NAME }}
+          cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+      - name: kubectl apply manifests
+        run: |
+          kubectl apply -f ./manifests/
